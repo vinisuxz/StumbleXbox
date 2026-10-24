@@ -1,0 +1,14 @@
+name: Build
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          docker run -v $PWD:/app free60/libxenon:latest \
+            sh -c "cd /app && make"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jogo
+          path: "*.elf32"
