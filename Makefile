@@ -11,7 +11,7 @@ LIBS = -lxenon -lm -lc
 all: $(TARGET).elf32
 
 $(TARGET).elf: main.o
-> $(CC) -o $@ main.o $(LDFLAGS) $(LIBS)
+> $(CC) -m32 -o $@ main.o $(LDFLAGS) $(LIBS)
 
 $(TARGET).elf32: $(TARGET).elf
 > $(OBJCOPY) -O elf32-powerpc --adjust-vma 0x80000000 $< $@
